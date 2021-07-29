@@ -3,7 +3,7 @@ library(tm)
 library(qdap)
 require(openNLP)
 
-c <- Corpus(DirSource("C:/Users/USER/Downloads/aa"))
+c <- Corpus(DirSource("F:/PLN/NLP-LAWS-TRANSPARENCY/Corpus"))
 summary(c)
 #setwd("C:/Documents/21-05/")
 
@@ -44,7 +44,7 @@ sil <- rep(0, k.max)
 # Compute the average silhouette width for 
 # k = 2 to k = 5
 for(i in 2:k.max){
-  km.res <- kmeans(na.omit(data), centers = i, nstart = 25, iter.max=30)#https://stat.ethz.ch/pipermail/r-help/2006-March/102752.html
+  km.res <- kmeans(data, centers = i, nstart = 25, iter.max=30)#https://stat.ethz.ch/pipermail/r-help/2006-March/102752.html
   ss <- silhouette(km.res$cluster, dist(data))
   sil[i] <- mean(ss[, 3])
 }
